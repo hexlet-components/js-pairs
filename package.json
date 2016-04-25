@@ -1,5 +1,5 @@
 {
-  "name": "schema-pairs",
+  "name": "hexlet-pairs",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
@@ -14,9 +14,9 @@
   "author": "Kirill Mokevnin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/hexlet-components/schema-pairs/issues"
+    "url": "https://github.com/hexlet-components/js-pairs/issues"
   },
-  "homepage": "https://github.com/hexlet-components/schema-pairs#readme",
+  "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
     "babel-core": "*",
     "babel-preset-es2015": "*",
