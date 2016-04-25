@@ -1,5 +1,5 @@
 import assert from 'assert';
-import * as pairs from './index.js';
+import * as pairs from './src/index.js';
 
 describe('Pairs', () => {
   it('should works', () => {

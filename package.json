@@ -2,10 +2,13 @@
   "name": "hexlet-pairs",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
-    "eslint": "eslint"
+    "build": "babel src --out-dir dist",
+    "eslint": "eslint",
+
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,6 +22,7 @@
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
     "babel-core": "*",
+    "babel-cli": "*",
     "babel-preset-es2015": "*",
     "eslint": "*",
     "eslint-plugin-import": "*",
