@@ -11,3 +11,5 @@ export const cons = (a, b) => (message) => {
 
 export const car = (pair) => pair('car');
 export const cdr = (pair) => pair('cdr');
+
+export const toString = (pair) => `(${car(pair)}, ${cdr(pair)})`;
