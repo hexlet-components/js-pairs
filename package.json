@@ -1,0 +1,28 @@
+{
+  "name": "schema-pairs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register",
+    "eslint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hexlet-components/js-pairs.git"
+  },
+  "author": "Kirill Mokevnin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hexlet-components/schema-pairs/issues"
+  },
+  "homepage": "https://github.com/hexlet-components/schema-pairs#readme",
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-preset-es2015": "*",
+    "eslint": "*",
+    "eslint-plugin-import": "*",
+    "eslint-config-airbnb": "*",
+    "mocha": "*"
+  }
+}
