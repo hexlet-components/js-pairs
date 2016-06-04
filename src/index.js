@@ -1,15 +1,9 @@
-export const cons = (a, b) => (message) => {
-  switch (message) {
-    case 'car':
-      return a;
-    case 'cdr':
-      return b;
-    default:
-      throw new Error(`Unknown message '${message}'`);
-  }
-};
+import * as listModule from './list';
+import * as pairModule from './pair';
 
-export const car = (pair) => pair('car');
-export const cdr = (pair) => pair('cdr');
+export const cons = pairModule.cons;
+export const car = pairModule.car;
+export const cdr = pairModule.cdr;
+export const toString = pairModule.toString;
 
-export const toString = (pair) => `(${car(pair)}, ${cdr(pair)})`;
+export const list = listModule;
