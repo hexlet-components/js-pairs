@@ -1,6 +1,6 @@
 import { cons as pairCons, car, cdr, toString as toS } from './pair';
 
-export const l = (...elements) => {
+export const make = (...elements) => {
   return elements.reverse().reduce((acc, item) => {
     return cons(item, acc);
   }, null);
@@ -28,7 +28,7 @@ export const reverse = (list) => {
   const iter = (items, acc) => {
     return isEmpty(items) ? acc : iter(tail(items), cons(head(items), acc));
   };
-  return iter(list, l());
+  return iter(list, make());
 };
 
 export const map = (func, list) => {
@@ -39,7 +39,7 @@ export const map = (func, list) => {
     return iter(tail(items), cons(func(head(items)), acc));
   };
 
-  return iter(list, l());
+  return iter(list, make());
 };
 
 export const filter = (func, list) => {
@@ -52,7 +52,7 @@ export const filter = (func, list) => {
     return iter(tail(items), newAcc);
   };
 
-  return iter(list, l());
+  return iter(list, make());
 };
 
 export const reduce = (func, acc, list) => {
@@ -67,6 +67,16 @@ export const append = (list1, list2) => {
     return list2;
   }
   return cons(head(list1), append(tail(list1), list2));
+};
+
+export const isContains = (list, element) => {
+  if (isEmpty(list)) {
+    return false;
+  }
+  if (head(list) === element) {
+    return true;
+  }
+  return isContains(tail(list), element);
 };
 
 export const length = (list) => reduce((n, acc) => acc + 1, 0, list);
