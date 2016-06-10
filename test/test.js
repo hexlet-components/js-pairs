@@ -15,6 +15,11 @@ describe('Pair', () => {
 
   it('#toString2', () => {
     const pair = cons(cons(3, 5), cons(1, null));
-    assert.equal(toString(pair), '(3, 5, 1)');
+    assert.equal(toString(pair), '((3, 5), (1, null))');
+  });
+
+  it('#toString3', () => {
+    const pair = cons(10, cons(1, 10));
+    assert.equal(toString(pair), '(10, (1, 10))');
   });
 });

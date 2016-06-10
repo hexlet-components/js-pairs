@@ -15,19 +15,18 @@ export const cdr = (pair) => pair('cdr');
 export const isPair = (pair) => typeof pair === 'function';
 
 export const toString = (pair) => {
+  if (pair === null) {
+    return '()';
+  }
+
   const rec = (p) => {
-    if (pair === null) {
-      return '';
+    if (!isPair(p)) {
+      return p;
     }
     const head = car(p);
     const tail = cdr(p);
-    if (isPair(tail)) {
-      return `${rec(head)}, ${rec(tail)}`;
-    } else if (tail === null) {
-      return head;
-    }
-    return `${head}, ${tail}`;
+    return `(${rec(head)}, ${rec(tail)})`;
   };
 
-  return `(${rec(pair)})`;
+  return rec(pair);
 };
