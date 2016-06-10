@@ -1,6 +1,6 @@
 {
   "name": "hexlet-pairs",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
+    "babel-plugin-syntax-flow": "*",
+    "babel-plugin-transform-flow-strip-types": "*",
+    "babel-plugin-typecheck": "*",
+    "babel-eslint": "*",
     "babel-core": "*",
     "babel-cli": "*",
     "babel-preset-es2015": "*",
