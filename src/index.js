@@ -22,7 +22,7 @@ export const toString = (pair) => {
     const head = car(p);
     const tail = cdr(p);
     if (isPair(tail)) {
-      return `${head}, ${rec(tail)}`;
+      return `${rec(head)}, ${rec(tail)}`;
     } else if (tail === null) {
       return head;
     }
