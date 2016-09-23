@@ -1,6 +1,6 @@
 {
   "name": "hexlet-pairs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -23,13 +23,13 @@
   "devDependencies": {
     "babel-plugin-syntax-flow": "*",
     "babel-plugin-transform-flow-strip-types": "*",
-    "babel-plugin-typecheck": "*",
     "babel-eslint": "*",
     "babel-core": "*",
     "babel-cli": "*",
-    "babel-preset-es2015": "*",
+    "babel-preset-latest": "*",
     "eslint": "*",
     "eslint-plugin-import": "*",
+    "eslint-plugin-flowtype": "*",
     "eslint-config-airbnb": "*",
     "mocha": "*"
   }

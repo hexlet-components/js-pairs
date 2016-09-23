@@ -1,4 +1,9 @@
-export const cons = (a, b) => (message) => {
+// @flow
+
+type Message = 'car' | 'cdr';
+type Pair = (message: Message) => any;
+
+export const cons = (a: any, b: any) => (message: Message) => {
   switch (message) {
     case 'car':
       return a;
@@ -9,19 +14,20 @@ export const cons = (a, b) => (message) => {
   }
 };
 
-export const car = pair => pair('car');
-export const cdr = pair => pair('cdr');
+export const car = (pair: Pair) => pair('car');
+export const cdr = (pair: Pair) => pair('cdr');
 
-export const isPair = pair => typeof pair === 'function';
+export const isPair = (pair: ?Pair) => typeof pair === 'function';
 
-export const toString = (pair) => {
+export const toString = (pair: ?Pair) => {
   if (pair === null) {
     return '()';
   }
   if (!isPair(pair)) {
-    throw new Error(`Argument must be pair, but it was '${pair}'`);
+    throw new Error(`Argument must be pair, but it was '${String(pair)}'`);
   }
-  const rec = (p) => {
+
+  const rec = p => {
     if (!isPair(p)) {
       return p;
     }
