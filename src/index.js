@@ -18,7 +18,10 @@ export const toString = (pair) => {
   if (pair === null) {
     return '()';
   }
-
+  if (!isPair(pair)) {
+    throw new Error(`Argument must be pair, but it was '${pair}'`);
+  }
+  
   const rec = (p) => {
     if (!isPair(p)) {
       return p;
