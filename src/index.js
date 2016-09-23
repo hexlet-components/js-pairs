@@ -18,6 +18,9 @@ export const toString = (pair) => {
   if (pair === null) {
     return '()';
   }
+  if (!isPair(pair)) {
+    throw "Is not valid pair!";
+  }
 
   const rec = (p) => {
     if (!isPair(p)) {
