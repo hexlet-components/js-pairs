@@ -34,7 +34,7 @@ export const car = (pair: Pair) => pair('car');
  * Get cdr (second element) from pair
  * @example
  * const pair = cons(5, 'hello');
- * car(pair); // hello
+ * cdr(pair); // hello
  **/
 export const cdr = (pair: Pair) => pair('cdr');
 
