@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "documentation": "documentation",
     "test": "mocha --compilers js:babel-core/register",
     "build": "babel src --out-dir dist",
     "eslint": "eslint",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
+    "documentation": "*",
     "babel-plugin-syntax-flow": "*",
     "babel-plugin-transform-flow-strip-types": "*",
     "babel-eslint": "*",

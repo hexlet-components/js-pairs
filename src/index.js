@@ -1,9 +1,17 @@
 // @flow
 
 type Message = 'car' | 'cdr';
+
 type Pair = (message: Message) => any;
 
-export const cons = (a: any, b: any) => (message: Message) => {
+/**
+ * Build pair
+ * @example
+ * const pair = cons(5, 'hello');
+ * @example
+ * const pair = cons(cons(1, null), 'world');
+ **/
+export const cons = (a: any, b: any): Pair => (message: Message) => {
   switch (message) {
     case 'car':
       return a;
@@ -14,11 +22,37 @@ export const cons = (a: any, b: any) => (message: Message) => {
   }
 };
 
+/**
+ * Get car (first element) from pair
+ * @example
+ * const pair = cons(5, 'hello');
+ * car(pair); // 5
+ **/
 export const car = (pair: Pair) => pair('car');
+
+/**
+ * Get car (second element) from pair
+ * @example
+ * const pair = cons(5, 'hello');
+ * car(pair); // hello
+ **/
 export const cdr = (pair: Pair) => pair('cdr');
 
+/**
+ * Check if something is pair
+ * @example
+ * const pair = cons(5, 'hello');
+ * isPair(pair); // true
+ * isPair(5); // false
+ **/
 export const isPair = (pair: ?Pair) => typeof pair === 'function';
 
+/**
+ * Convert pair to string
+ * @example
+ * const pair = cons(5, 'hello');
+ * toString(pair); // (5, 'hello')
+ **/
 export const toString = (pair: ?Pair) => {
   if (pair === null) {
     return '()';
