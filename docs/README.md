@@ -38,7 +38,7 @@ car(pair); // 5
 
 # cdr
 
-Get car (second element) from pair
+Get cdr (second element) from pair
 
 **Parameters**
 
@@ -69,7 +69,7 @@ isPair(5); // false
 
 # toString
 
-Convert pair to string
+Convert pair to string (recursively)
 
 **Parameters**
 
@@ -78,6 +78,5 @@ Convert pair to string
 **Examples**
 
 ```javascript
-const pair = cons(5, 'hello');
-toString(pair); // (5, 'hello')
+toString(cons('', 10)); // ('', 10)
 ```

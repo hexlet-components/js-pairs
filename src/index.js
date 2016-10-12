@@ -31,7 +31,7 @@ export const cons = (a: any, b: any): Pair => (message: Message) => {
 export const car = (pair: Pair) => pair('car');
 
 /**
- * Get car (second element) from pair
+ * Get cdr (second element) from pair
  * @example
  * const pair = cons(5, 'hello');
  * car(pair); // hello
@@ -48,10 +48,9 @@ export const cdr = (pair: Pair) => pair('cdr');
 export const isPair = (pair: ?Pair) => typeof pair === 'function';
 
 /**
- * Convert pair to string
+ * Convert pair to string (recursively)
  * @example
- * const pair = cons(5, 'hello');
- * toString(pair); // (5, 'hello')
+ * toString(cons('', 10)); // ('', 10)
  **/
 export const toString = (pair: ?Pair) => {
   if (pair === null) {
