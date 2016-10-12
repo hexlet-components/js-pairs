@@ -48,7 +48,7 @@ Get cdr (second element) from pair
 
 ```javascript
 const pair = cons(5, 'hello');
-car(pair); // hello
+cdr(pair); // hello
 ```
 
 # isPair
