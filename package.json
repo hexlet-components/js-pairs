@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
-    "documentation": "*",
+    "documentation": "v4.0.0-beta11",
     "babel-plugin-syntax-flow": "*",
     "babel-plugin-transform-flow-strip-types": "*",
     "babel-eslint": "*",
