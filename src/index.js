@@ -52,21 +52,18 @@ export const isPair = (pair: ?Pair) => typeof pair === 'function';
  * @example
  * toString(cons('', 10)); // ('', 10)
  **/
-export const toString = (pair: ?Pair) => {
-  if (pair === null) {
-    return '()';
-  }
+export const toString = (pair: Pair) => {
   if (!isPair(pair)) {
     throw new Error(`Argument must be pair, but it was '${String(pair)}'`);
   }
 
   const rec = p => {
     if (!isPair(p)) {
-      return p;
+      return String(p);
     }
-    const head = car(p);
-    const tail = cdr(p);
-    return `(${rec(head)}, ${rec(tail)})`;
+    const left = car(p);
+    const right = cdr(p);
+    return `(${rec(left)}, ${rec(right)})`;
   };
 
   return rec(pair);
