@@ -3,7 +3,7 @@
 ## Install
 
 ```sh
-npm install hexlet-pairs --save-dev
+npm install hexlet-pairs --save
 ```
 
 ## Using
