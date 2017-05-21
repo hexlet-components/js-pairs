@@ -1,7 +1,3 @@
 {
-  "presets": ["latest"],
-  "plugins": [
-    "syntax-flow",
-    "transform-flow-strip-types"
-  ]
+  "presets": ["env", "flow", "stage-0"]
 }

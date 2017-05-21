@@ -5,11 +5,14 @@
   "main": "dist/index.js",
   "scripts": {
     "documentation": "documentation",
-    "test": "jest",
+    "test": "jest --colors",
     "build": "babel src --out-dir dist",
     "eslint": "eslint",
-
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "flow-typed": "flow-typed"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -22,18 +25,20 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
-    "documentation": "v4.0.0-beta11",
-    "babel-plugin-syntax-flow": "*",
-    "babel-plugin-transform-flow-strip-types": "*",
-    "babel-eslint": "*",
-    "babel-core": "*",
     "babel-cli": "*",
-    "babel-preset-latest": "*",
-    "eslint": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-flowtype": "*",
-    "eslint-config-airbnb": "*",
+    "babel-core": "*",
+    "babel-eslint": "*",
     "babel-jest": "*",
-    "jest": "*"
+    "babel-preset-env": "*",
+    "babel-preset-flow": "*",
+    "babel-preset-stage-0": "*",
+    "documentation": ">= v4.0.0-beta11",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-plugin-flowtype": "*",
+    "eslint-plugin-import": "*",
+    "flow-bin": "^0.46",
+    "jest": "^20",
+    "flow-typed": "*"
   }
 }
