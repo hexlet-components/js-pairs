@@ -1,5 +1,6 @@
 install:
 	yarn
+	npm run flow-typed install
 
 build:
 	npm run build
