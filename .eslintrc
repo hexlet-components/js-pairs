@@ -9,4 +9,4 @@ plugins:
 
 env:
   node: true
-  mocha: true
+  jest: true
