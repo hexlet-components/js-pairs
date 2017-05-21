@@ -3,6 +3,8 @@ install:
 	npm run flow-typed install
 
 build:
+	rm -rf dist
+	mkdir dist
 	npm run build
 
 docs:
