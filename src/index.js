@@ -5,21 +5,41 @@ type Message = 'car' | 'cdr';
 type Pair = (message: Message) => any;
 
 /**
+ * Check if something is pair
+ * @example
+ * const pair = cons(5, 'hello');
+ * isPair(pair); // true
+ * isPair(5); // false
+ **/
+export const isPair = (pair: ?Pair) => typeof pair === 'function' && pair.pair;
+
+export const checkPair = (pair: ?Pair) => {
+  if (!isPair(pair)) {
+    const value = typeof pair === 'object' ? JSON.stringify(pair, null, 2) : String(pair);
+    throw new Error(`Argument must be pair, but it was '${value}'`);
+  }
+};
+
+/**
  * Build pair
  * @example
  * const pair = cons(5, 'hello');
  * @example
  * const pair = cons(cons(1, null), 'world');
  **/
-export const cons = (a: any, b: any): Pair => (message: Message) => {
-  switch (message) {
-    case 'car':
-      return a;
-    case 'cdr':
-      return b;
-    default:
-      throw new Error(`Unknown message '${message}'`);
-  }
+export const cons = (a: any, b: any): Pair => {
+  const pair = (message: Message) => {
+    switch (message) {
+      case 'car':
+        return a;
+      case 'cdr':
+        return b;
+      default:
+        throw new Error(`Unknown message '${message}'`);
+    }
+  };
+  pair.pair = true;
+  return pair;
 };
 
 /**
@@ -28,7 +48,10 @@ export const cons = (a: any, b: any): Pair => (message: Message) => {
  * const pair = cons(5, 'hello');
  * car(pair); // 5
  **/
-export const car = (pair: Pair) => pair('car');
+export const car = (pair: Pair) => {
+  checkPair(pair);
+  return pair('car');
+};
 
 /**
  * Get cdr (second element) from pair
@@ -36,16 +59,10 @@ export const car = (pair: Pair) => pair('car');
  * const pair = cons(5, 'hello');
  * cdr(pair); // hello
  **/
-export const cdr = (pair: Pair) => pair('cdr');
-
-/**
- * Check if something is pair
- * @example
- * const pair = cons(5, 'hello');
- * isPair(pair); // true
- * isPair(5); // false
- **/
-export const isPair = (pair: ?Pair) => typeof pair === 'function';
+export const cdr = (pair: Pair) => {
+  checkPair(pair);
+  return pair('cdr');
+};
 
 /**
  * Convert pair to string (recursively)
@@ -53,11 +70,8 @@ export const isPair = (pair: ?Pair) => typeof pair === 'function';
  * toString(cons('', 10)); // ('', 10)
  **/
 export const toString = (pair: Pair) => {
-  if (!isPair(pair)) {
-    throw new Error(`Argument must be pair, but it was '${String(pair)}'`);
-  }
-
-  const rec = p => {
+  checkPair(pair);
+  const rec = (p) => {
     if (!isPair(p)) {
       return String(p);
     }
