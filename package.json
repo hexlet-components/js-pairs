@@ -24,14 +24,16 @@
     "url": "https://github.com/hexlet-components/js-pairs/issues"
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
+  "dependencies": {
+    "babel-preset-env": "*",
+    "babel-preset-stage-0": "*",
+    "babel-preset-flow": "*"
+  },
   "devDependencies": {
     "babel-cli": "*",
     "babel-core": "*",
     "babel-eslint": "*",
     "babel-jest": "*",
-    "babel-preset-env": "*",
-    "babel-preset-flow": "*",
-    "babel-preset-stage-0": "*",
     "documentation": ">= v4.0.0-beta11",
     "eslint": "*",
     "eslint-config-airbnb": "*",
