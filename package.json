@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "dependencies": {
+    "source-map-support": "*",
     "babel-preset-env": "*",
     "babel-preset-stage-0": "*",
     "babel-preset-flow": "*"

@@ -1,5 +1,7 @@
 // @flow
 
+import 'source-map-support/register';
+
 type Message = 'car' | 'cdr';
 
 type Pair = (message: Message) => any;
