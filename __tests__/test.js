@@ -1,5 +1,3 @@
-// @flow
-
 import { cons, car, cdr, toString } from '../src';
 
 describe('Pair', () => {
@@ -27,18 +25,18 @@ describe('Pair', () => {
   it('#checkPair', () => {
     expect(() => {
       car(345);
-    }).toThrowError(/345/);
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       cdr('asdf');
-    }).toThrowError(/asdf/);
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       cdr(() => 'ehu');
-    }).toThrowError(/ehu/);
+    }).toThrowErrorMatchingSnapshot();
 
     expect(() => {
       car({ key: 'value' });
-    }).toThrowError(/value/);
+    }).toThrowErrorMatchingSnapshot();
   });
 });
