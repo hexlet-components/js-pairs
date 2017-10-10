@@ -1,5 +1,5 @@
 {
-  "name": "hexlet-pair",
+  "name": "hexlet-pairs",
   "version": "1.0.5",
   "description": "",
   "main": "dist/index.js",
@@ -25,6 +25,9 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "dependencies": {
+    "babel-preset-env": "*",
+    "babel-preset-flow": "*",
+    "babel-preset-stage-0": "*",
     "source-map-support": "*"
   },
   "devDependencies": {
@@ -32,9 +35,6 @@
     "babel-core": "*",
     "babel-eslint": "*",
     "babel-jest": "*",
-    "babel-preset-env": "*",
-    "babel-preset-flow": "*",
-    "babel-preset-stage-0": "*",
     "documentation": "*",
     "eslint": "*",
     "eslint-config-airbnb": "*",
