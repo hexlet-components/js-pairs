@@ -1,3 +1,5 @@
+// @flow
+
 import { cons, car, cdr, toString } from '../src';
 
 describe('Pair', () => {
