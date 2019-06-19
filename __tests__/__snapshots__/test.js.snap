@@ -4,11 +4,7 @@ exports[`Pair #checkPair 1`] = `"Argument must be pair, but it was '345'"`;
 
 exports[`Pair #checkPair 2`] = `"Argument must be pair, but it was 'asdf'"`;
 
-exports[`Pair #checkPair 3`] = `
-"Argument must be pair, but it was 'function () {
-        return 'ehu';
-      }'"
-`;
+exports[`Pair #checkPair 3`] = `"Argument must be pair, but it was '() => 'ehu''"`;
 
 exports[`Pair #checkPair 4`] = `
 "Argument must be pair, but it was '{

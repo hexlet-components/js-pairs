@@ -1,6 +1,11 @@
 // @flow
 
-import { cons, car, cdr, toString } from '../src';
+import {
+  cons,
+  car,
+  cdr,
+  toString,
+} from '../src';
 
 describe('Pair', () => {
   it('#cons', () => {
