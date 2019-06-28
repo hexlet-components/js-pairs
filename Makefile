@@ -17,6 +17,6 @@ lint:
 	npx eslint .
 
 publish:
-	npm publish
+	npm publish --access public
 
 .PHONY: test docs

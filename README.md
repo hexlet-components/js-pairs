@@ -9,7 +9,7 @@ npm install @hexlet/pairs --save
 ## Using
 
 ```javascript
-import { cons, car, cdr, toString } from 'hexlet-pairs';
+import { cons, car, cdr, toString } from '@hexlet/pairs';
 
 const pair = cons(3, 5);
 car(pair); // 3
