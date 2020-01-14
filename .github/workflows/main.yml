@@ -1,0 +1,30 @@
+name: Main workflow
+
+on: push
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
+    name: test/node ${{ matrix.node-version }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: make install
+      - run: make test
+
+  checkCodeStyle:
+    name: check codestyle
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - run: make install
+      - run: make lint

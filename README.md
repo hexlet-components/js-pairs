@@ -1,5 +1,7 @@
 # js-pairs
 
+[![github action status](https://github.com/hexlet-components/js-pairs/workflows/Main%20workflow/badge.svg)](https://github.com/hexlet-components/js-pairs/actions)
+
 ## Install
 
 ```sh
