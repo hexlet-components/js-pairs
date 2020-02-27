@@ -1,4 +1,4 @@
-// @flow
+// @ts-check
 
 import {
   cons,

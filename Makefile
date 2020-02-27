@@ -1,6 +1,5 @@
 install:
 	npm install
-	npm run flow-typed install
 
 build:
 	rm -rf dist
