@@ -1,6 +1,6 @@
 # js-pairs
 
-[![github action status](https://github.com/hexlet-components/js-pairs/workflows/Main%20workflow/badge.svg)](https://github.com/hexlet-components/js-pairs/actions)
+[![github action status](https://github.com/hexlet-components/js-pairs/workflows/Node%20CI/badge.svg)](https://github.com/hexlet-components/js-pairs/actions)
 
 ## Install
 

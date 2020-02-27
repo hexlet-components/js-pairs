@@ -1,0 +1,26 @@
+name: On Release
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '13.x'
+      - name: Install
+        run: make install
+      - name: Run linter
+        run: make lint
+      - name: Run tests
+        run: make test
+      - name: Publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ${{ secrets.npmjs_com }}
+          make publish
