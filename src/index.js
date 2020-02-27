@@ -1,18 +1,4 @@
-/**
- * Check if something is pair
- * @example
- * const pair = cons(5, 'hello');
- * isPair(pair); // true
- * isPair(5); // false
- */
-export const isPair = (pair) => typeof pair === 'function' && pair.pair;
-
-export const checkPair = (pair) => {
-  if (!isPair(pair)) {
-    const value = typeof pair === 'object' ? JSON.stringify(pair, null, 2) : String(pair);
-    throw new Error(`Argument must be pair, but it was '${value}'`);
-  }
-};
+// @ts-check
 
 /**
  * Build pair
@@ -34,6 +20,22 @@ export const cons = (a, b) => {
   };
   pair.pair = true;
   return pair;
+};
+
+/**
+ * Check if something is pair
+ * @example
+ * const pair = cons(5, 'hello');
+ * isPair(pair); // true
+ * isPair(5); // false
+ */
+export const isPair = (pair) => typeof pair === 'function' && pair.pair;
+
+export const checkPair = (pair) => {
+  if (!isPair(pair)) {
+    const value = typeof pair === 'object' ? JSON.stringify(pair, null, 2) : String(pair);
+    throw new Error(`Argument must be pair, but it was '${value}'`);
+  }
 };
 
 /**
