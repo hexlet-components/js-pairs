@@ -2,7 +2,6 @@
 
 plugins:
   - jest
-  - babel
 
 env:
   node: true
