@@ -29,7 +29,6 @@
     "@babel/cli": "^7.0.0-beta.49",
     "@babel/core": "^7.0.0-beta.49",
     "@babel/preset-env": "^7.0.0-beta.49",
-    "@babel/preset-flow": "^7.0.0-beta.49",
     "@babel/register": "^7.0.0-beta.49",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^8.2.3",
@@ -38,13 +37,10 @@
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-babel": "^5.3.0",
-    "eslint-plugin-flowtype": "^2.46.3",
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jest": "^21.15.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "flow-bin": "^0.49.1",
-    "flow-typed": "*",
     "jest": "^23.1.0",
     "jest-cli": "^23.1.0"
   }
