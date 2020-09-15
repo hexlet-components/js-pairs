@@ -5,7 +5,7 @@ import {
   car,
   cdr,
   toString,
-} from '../src';
+} from '../index.js';
 
 describe('Pair', () => {
   it('#cons', () => {
