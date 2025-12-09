@@ -1,15 +1,38 @@
 {
   "name": "@hexlet/pairs",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./index.js": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./index": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "type": "module",
   "engines": {
     "node": ">=22.0"
   },
   "scripts": {
-    "documentation": "documentation",
-    "test": "vitest run"
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "documentation": "documentation build src/index.ts -f md",
+    "test": "vitest run --pool=threads",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -29,6 +52,8 @@
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "npm-check-updates": "^19.1.2",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.15.0",
     "vitest": "^4.0.15"
   }
 }

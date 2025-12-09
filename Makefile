@@ -3,16 +3,16 @@ install:
 
 docs:
 	mkdir -p docs
-	npm run documentation -- build index.js -f md > docs/README.md
+	npm run documentation -s > docs/README.md
 
 test:
 	npm test -s
 
 lint:
-	npx eslint .
+	npm run lint -s
 
 lint-fix:
-	npx eslint . --fix
+	npm run lint:fix
 
 publish:
 	npm publish --access public

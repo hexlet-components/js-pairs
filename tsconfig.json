@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": [
+    "src",
+    "__tests__",
+    "eslint.config.js",
+    "vitest.config.*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
+}

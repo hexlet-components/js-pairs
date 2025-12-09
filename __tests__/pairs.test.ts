@@ -1,12 +1,10 @@
-// @ts-check
-
 import { describe, it, expect } from 'vitest'
 import {
   cons,
   car,
   cdr,
   toString,
-} from '../index.js'
+} from '../src/index.ts'
 
 describe('Pair', () => {
   it('#cons', () => {
@@ -32,18 +30,22 @@ describe('Pair', () => {
 
   it('#checkPair', () => {
     expect(() => {
+      // @ts-expect-error - runtime guard should throw when value is not a pair
       car(345)
     }).toThrowErrorMatchingSnapshot()
 
     expect(() => {
+      // @ts-expect-error - runtime guard should throw when value is not a pair
       cdr('asdf')
     }).toThrowErrorMatchingSnapshot()
 
     expect(() => {
+      // @ts-expect-error - runtime guard should throw when value is not a pair
       cdr(() => 'ehu')
     }).toThrowErrorMatchingSnapshot()
 
     expect(() => {
+      // @ts-expect-error - runtime guard should throw when value is not a pair
       car({ key: 'value' })
     }).toThrowErrorMatchingSnapshot()
   })
