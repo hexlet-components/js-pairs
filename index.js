@@ -11,16 +11,16 @@ export const cons = (a, b) => {
   const pair = (message) => {
     switch (message) {
       case 'car':
-        return a;
+        return a
       case 'cdr':
-        return b;
+        return b
       default:
-        throw new Error(`Unknown message '${message}'`);
+        throw new Error(`Unknown message '${message}'`)
     }
-  };
-  pair.pair = true;
-  return pair;
-};
+  }
+  pair.pair = true
+  return pair
+}
 
 /**
  * Check if something is pair
@@ -29,14 +29,14 @@ export const cons = (a, b) => {
  * isPair(pair); // true
  * isPair(5); // false
  */
-export const isPair = (pair) => typeof pair === 'function' && pair.pair;
+export const isPair = pair => typeof pair === 'function' && pair.pair
 
 export const checkPair = (pair) => {
   if (!isPair(pair)) {
-    const value = typeof pair === 'object' ? JSON.stringify(pair, null, 2) : String(pair);
-    throw new Error(`Argument must be pair, but it was '${value}'`);
+    const value = typeof pair === 'object' ? JSON.stringify(pair, null, 2) : String(pair)
+    throw new Error(`Argument must be pair, but it was '${value}'`)
   }
-};
+}
 
 /**
  * Get car (first element) from pair
@@ -45,9 +45,9 @@ export const checkPair = (pair) => {
  * car(pair); // 5
  */
 export const car = (pair) => {
-  checkPair(pair);
-  return pair('car');
-};
+  checkPair(pair)
+  return pair('car')
+}
 
 /**
  * Get cdr (second element) from pair
@@ -56,9 +56,9 @@ export const car = (pair) => {
  * cdr(pair); // hello
  */
 export const cdr = (pair) => {
-  checkPair(pair);
-  return pair('cdr');
-};
+  checkPair(pair)
+  return pair('cdr')
+}
 
 /**
  * Convert pair to string (recursively)
@@ -66,15 +66,15 @@ export const cdr = (pair) => {
  * toString(cons('', 10)); // ('', 10)
  */
 export const toString = (pair) => {
-  checkPair(pair);
+  checkPair(pair)
   const rec = (p) => {
     if (!isPair(p)) {
-      return String(p);
+      return String(p)
     }
-    const left = car(p);
-    const right = cdr(p);
-    return `(${rec(left)}, ${rec(right)})`;
-  };
+    const left = car(p)
+    const right = cdr(p)
+    return `(${rec(left)}, ${rec(right)})`
+  }
 
-  return rec(pair);
-};
+  return rec(pair)
+}

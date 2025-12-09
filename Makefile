@@ -11,7 +11,13 @@ test:
 lint:
 	npx eslint .
 
+lint-fix:
+	npx eslint . --fix
+
 publish:
 	npm publish --access public
+
+update-deps:
+	npx ncu -u
 
 .PHONY: test docs

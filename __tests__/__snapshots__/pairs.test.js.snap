@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Pair > #checkPair 1`] = `[Error: Argument must be pair, but it was '345']`;
+
+exports[`Pair > #checkPair 2`] = `[Error: Argument must be pair, but it was 'asdf']`;
+
+exports[`Pair > #checkPair 3`] = `[Error: Argument must be pair, but it was '() => 'ehu'']`;
+
+exports[`Pair > #checkPair 4`] = `
+[Error: Argument must be pair, but it was '{
+  "key": "value"
+}']
+`;
