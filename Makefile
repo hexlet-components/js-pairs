@@ -9,6 +9,7 @@ test:
 	npm test -s
 
 lint:
+	npm run typecheck -s
 	npm run lint -s
 
 lint-fix:
