@@ -4,14 +4,6 @@
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
-  "include": [
-    "src",
-    "__tests__",
-    "eslint.config.js",
-    "vitest.config.*"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
-  ]
+  "include": ["src", "__tests__", "vitest.config.*"],
+  "exclude": ["dist", "node_modules"]
 }
