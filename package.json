@@ -22,15 +22,15 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=22.0"
+    "node": ">=26.0"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
     "documentation": "documentation build src/index.ts -f md",
     "test": "vitest run --pool=threads",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
     "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
@@ -45,15 +45,10 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@stylistic/eslint-plugin": "^5.6.1",
-    "@vitest/eslint-plugin": "^1.5.2",
+    "@biomejs/biome": "^2.2.4",
     "documentation": "^14.0.3",
-    "eslint": "^10.2.1",
-    "globals": "^17.5.0",
     "npm-check-updates": "^22.0.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.49.0",
     "vitest": "^4.0.15"
   }
 }

@@ -13,7 +13,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: '24.x'
+          node-version: '26.x'
       - name: Install
         run: make install
       - name: Run linter
