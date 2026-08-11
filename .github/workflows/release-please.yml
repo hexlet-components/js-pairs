@@ -44,3 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RELEASE_PR: ${{ steps.release.outputs.pr }}
+          # Job не делает checkout, поэтому рабочего каталога с .git нет и gh
+          # не может вывести репозиторий сам: без этого шаг падает с
+          # «fatal: not a git repository». Добавлять checkout ради одного
+          # вызова gh не нужно.
+          GH_REPO: ${{ github.repository }}
