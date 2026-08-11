@@ -1,0 +1,17 @@
+# Что oxfmt не форматирует. Список повторяет ignorePatterns из .oxlintrc.json:
+# линт и формат должны видеть одни и те же файлы.
+node_modules/
+# oxfmt форматирует не только js/ts. Без этих строк он переписывает package.json
+# в свой вид и правит docs/README.md, который генерируется из исходников целью
+# `make docs`. YAML и JSON здесь ведут другие инструменты.
+*.yml
+*.yaml
+*.json
+*.jsonc
+*.css
+*.md
+vendor/
+dist/
+build/
+coverage/
+__snapshots__/

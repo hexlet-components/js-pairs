@@ -29,10 +29,12 @@
     "typecheck": "tsc --noEmit",
     "documentation": "documentation build src/index.ts -f md",
     "test": "vitest run --pool=threads",
-    "lint": "biome check .",
-    "lint:fix": "biome check --write .",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm run build"
+    "lint": "oxlint --config=.oxlintrc.json .",
+    "lint:fix": "oxfmt --ignore-path=.oxfmtignore . && oxlint --config=.oxlintrc.json --fix .",
+    "prepare": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
+    "format": "oxfmt --ignore-path=.oxfmtignore .",
+    "format:check": "oxfmt --ignore-path=.oxfmtignore --check ."
   },
   "repository": {
     "type": "git",
@@ -45,10 +47,12 @@
   },
   "homepage": "https://github.com/hexlet-components/js-pairs#readme",
   "devDependencies": {
-    "@biomejs/biome": "^2.2.4",
     "documentation": "^14.0.3",
     "npm-check-updates": "^22.0.1",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
     "typescript": "^6.0.3",
     "vitest": "^4.0.15"
-  }
+  },
+  "packageManager": "pnpm@11.20.0"
 }

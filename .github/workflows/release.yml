@@ -1,5 +1,7 @@
 name: On Release
 
+# Срабатывает на тег v*, который ставит release-please. Версионирование живёт
+# в release-please.yml, здесь только публикация.
 on:
   push:
     tags:
@@ -10,10 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v4
+
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
           node-version: '26.x'
+          cache: pnpm
+
       - name: Install
         run: make install
       - name: Run linter
@@ -22,5 +29,5 @@ jobs:
         run: make test
       - name: Publish
         run: |
-          npm config set //registry.npmjs.org/:_authToken ${{ secrets.npmjs_com }}
+          pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.npmjs_com }}
           make publish

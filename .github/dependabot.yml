@@ -5,17 +5,21 @@ updates:
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 1
+    labels: ["dependencies", "automated"]
+    commit-message:
+      prefix: "chore"
     groups:
-      all-npm-dependencies:
-        patterns:
-          - "*"
+      npm-all:
+        patterns: ["*"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "monthly"
     open-pull-requests-limit: 1
+    labels: ["dependencies", "automated"]
+    commit-message:
+      prefix: "chore"
     groups:
-      all-github-actions-dependencies:
-        patterns:
-          - "*"
+      github-actions-all:
+        patterns: ["*"]

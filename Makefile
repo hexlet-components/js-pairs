@@ -1,24 +1,26 @@
+# Флаг тишины у pnpm ставится ПЕРЕД именем скрипта: `pnpm --silent run <name>`.
+# В форме `pnpm run <name> -s` (так было с npm) pnpm пробрасывает `-s` в саму
+# команду, и она падает: `tsc --noEmit -s`, `vitest run -s`. У цели docs это
+# ещё и портит результат, потому что баннер pnpm уехал бы прямо в README.
 install:
-	npm install
+	pnpm install
 
 docs:
 	mkdir -p docs
-	npm run documentation -s > docs/README.md
+	pnpm --silent run documentation > docs/README.md
 
 test:
-	npm test -s
+	pnpm --silent test
 
 lint:
-	npm run typecheck -s
-	npm run lint -s
+	pnpm --silent run typecheck
+	pnpm --silent run lint
+	pnpm --silent run format:check
 
 lint-fix:
-	npm run lint:fix
+	pnpm run lint:fix
 
 publish:
-	npm publish --access public
-
-update-deps:
-	npx ncu -u
+	pnpm publish --access public --no-git-checks
 
 .PHONY: test docs
