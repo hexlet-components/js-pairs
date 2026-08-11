@@ -27,21 +27,21 @@ describe('Pair', () => {
     expect(() => {
       // @ts-expect-error - runtime guard should throw when value is not a pair
       car(345);
-    }).toThrowErrorMatchingSnapshot();
+    }).toThrowErrorMatchingSnapshot('car of a number');
 
     expect(() => {
       // @ts-expect-error - runtime guard should throw when value is not a pair
       cdr('asdf');
-    }).toThrowErrorMatchingSnapshot();
+    }).toThrowErrorMatchingSnapshot('cdr of a string');
 
     expect(() => {
       // @ts-expect-error - runtime guard should throw when value is not a pair
       cdr(() => 'ehu');
-    }).toThrowErrorMatchingSnapshot();
+    }).toThrowErrorMatchingSnapshot('cdr of a function');
 
     expect(() => {
       // @ts-expect-error - runtime guard should throw when value is not a pair
       car({ key: 'value' });
-    }).toThrowErrorMatchingSnapshot();
+    }).toThrowErrorMatchingSnapshot('car of a plain object');
   });
 });
