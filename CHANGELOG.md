@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/hexlet-components/js-pairs/compare/v2.0.2...v2.0.3) (2026-08-11)
+
+
+### Bug Fixes
+
+* **ci:** publish from the release-please workflow ([#65](https://github.com/hexlet-components/js-pairs/issues/65)) ([c19daaa](https://github.com/hexlet-components/js-pairs/commit/c19daaabe9039e1f07ca12a3055a436180203298))
+
 ## [2.0.2](https://github.com/hexlet-components/js-pairs/compare/v2.0.1...v2.0.2) (2026-08-11)
 
 
