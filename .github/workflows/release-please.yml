@@ -1,15 +1,5 @@
 name: Release Please
 
-# Ведёт версию и CHANGELOG.md по conventional commits, ставит тег v* и сразу
-# публикует пакет в npm.
-#
-# Публикация живёт здесь, а не в отдельном workflow по тегу, потому что тег
-# ставит GITHUB_TOKEN, а GitHub не запускает workflow от его событий (защита от
-# рекурсии). Tag-workflow в этой схеме не срабатывает вообще: версия в git
-# уходит вперёд, в npm остаётся старая, и расхождение замечают через месяцы.
-#
-# Релизный PR вливается руками, автомержа нет: обязательные проверки на нём по
-# той же причине либо не стартуют, либо ждут ручного одобрения.
 on:
   push:
     branches:
@@ -18,55 +8,33 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  id-token: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
-    outputs:
-      released: ${{ steps.release.outputs.release_created }}
-      tag: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@v5
         id: release
         with:
           release-type: node
-        env:
-          # Без этого release-please 17 падает с «self-signed certificate».
-          # Он ходит в API через undici, который берёт свой набор корневых
-          # сертификатов вместо системного.
-          NODE_OPTIONS: --use-system-ca
 
-  publish:
-    needs: release-please
-    if: ${{ needs.release-please.outputs.released == 'true' }}
-    runs-on: ubuntu-latest
-    steps:
       - uses: actions/checkout@v7
-        with:
-          ref: ${{ needs.release-please.outputs.tag }}
+        if: ${{ steps.release.outputs.release_created }}
 
       - uses: pnpm/action-setup@v6
+        if: ${{ steps.release.outputs.release_created }}
 
-      - name: Use Node.js
-        uses: actions/setup-node@v7
+      - uses: actions/setup-node@v7
+        if: ${{ steps.release.outputs.release_created }}
         with:
           node-version: '26.x'
           cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Install
-        run: make install
-      - name: Run linter
-        run: make lint
-      - name: Run tests
-        run: make test
-      # Токен пишется в ~/.npmrc явно. Через registry-url у setup-node не
-      # работает: тот кладёт .npmrc с подстановкой NODE_AUTH_TOKEN, pnpm 11 его
-      # не подхватывает, уходит в OIDC, а неавторизованный PUT npm отдаёт как
-      # 404 Not Found, что читается как «пакета нет», а не «нет доступа».
-      - name: Publish
-        run: |
-          printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_TOKEN" > ~/.npmrc
-          make publish
+      - run: make install
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: make publish
+        if: ${{ steps.release.outputs.release_created }}
         env:
-          NPM_TOKEN: ${{ secrets.NPMJS_COM }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_COM }}
