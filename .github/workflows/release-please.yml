@@ -53,7 +53,6 @@ jobs:
         with:
           node-version: '26.x'
           cache: pnpm
-          registry-url: 'https://registry.npmjs.org'
 
       - name: Install
         run: make install
@@ -61,7 +60,13 @@ jobs:
         run: make lint
       - name: Run tests
         run: make test
+      # Токен пишется в ~/.npmrc явно. Через registry-url у setup-node не
+      # работает: тот кладёт .npmrc с подстановкой NODE_AUTH_TOKEN, pnpm 11 его
+      # не подхватывает, уходит в OIDC, а неавторизованный PUT npm отдаёт как
+      # 404 Not Found, что читается как «пакета нет», а не «нет доступа».
       - name: Publish
-        run: make publish
+        run: |
+          printf '//registry.npmjs.org/:_authToken=%s\n' "$NPM_TOKEN" > ~/.npmrc
+          make publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.npmjs_com }}
+          NPM_TOKEN: ${{ secrets.NPMJS_COM }}
