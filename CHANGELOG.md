@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.4](https://github.com/hexlet-components/js-pairs/compare/v2.0.3...v2.0.4) (2026-08-11)
+
+
+### Bug Fixes
+
+* **ci:** write the npm token to .npmrc explicitly ([#67](https://github.com/hexlet-components/js-pairs/issues/67)) ([23ddfc9](https://github.com/hexlet-components/js-pairs/commit/23ddfc96d8222829856a50acd2196f3fb0e53ea4))
+
 ## [2.0.3](https://github.com/hexlet-components/js-pairs/compare/v2.0.2...v2.0.3) (2026-08-11)
 
 
