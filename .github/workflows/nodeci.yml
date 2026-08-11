@@ -1,9 +1,8 @@
 name: Node CI
 
+# Только на пулреквестах. На main проверки идут внутри Release Please, чтобы
+# мерж давал ровно один прогон, а не два workflow на один и тот же коммит.
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main

@@ -34,6 +34,12 @@ jobs:
       - run: make install
         if: ${{ steps.release.outputs.release_created }}
 
+      - run: make lint
+        if: ${{ steps.release.outputs.release_created }}
+
+      - run: make test
+        if: ${{ steps.release.outputs.release_created }}
+
       - run: make publish
         if: ${{ steps.release.outputs.release_created }}
         env:
