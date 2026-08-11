@@ -20,6 +20,15 @@ lint:
 lint-fix:
 	pnpm run lint:fix
 
+# Обновление зависимостей внутри репозитория идёт через npm-check-updates:
+# он поднимает диапазоны в самом package.json, чего `pnpm update` не делает
+# (тот двигает установленную версию в пределах уже записанного диапазона).
+# Dependabot закрывает регулярные обновления, эта цель нужна для ручного
+# прохода, когда диапазоны отстали от мажорных версий.
+update-deps:
+	pnpm exec ncu -u
+	pnpm install
+
 publish:
 	pnpm publish --access public --no-git-checks
 
