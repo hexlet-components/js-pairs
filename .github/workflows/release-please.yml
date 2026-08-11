@@ -4,6 +4,12 @@ name: Release Please
 # Публикацию в npm делает не этот workflow, а release.yml, который срабатывает
 # на пуш тега. То есть здесь закрывается только версионирование: ровно тот шаг,
 # который раньше делали руками и из-за которого версии в git и в npm разошлись.
+#
+# Релизный PR вливается руками. Автомержа здесь намеренно нет: PR создаёт
+# GITHUB_TOKEN, а GitHub не запускает workflow от его событий (защита от
+# рекурсии). Поэтому обязательные проверки на релизном PR либо не стартуют
+# вовсе, либо встают в action_required, и автомерж ждал бы статуса, которого
+# никто не пришлёт.
 on:
   push:
     branches:
@@ -18,7 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v5
-        id: release
         with:
           release-type: node
         env:
@@ -26,26 +31,3 @@ jobs:
           # Он ходит в API через undici, который берёт свой набор корневых
           # сертификатов вместо системного.
           NODE_OPTIONS: --use-system-ca
-
-      # «Автоматический релиз при зелёных проверках»: PR вливается сам, но
-      # только после обязательных статус-проверок. Требование зелёного CI даёт
-      # защита ветки, а не этот шаг. Если защиту снять, PR вольётся немедленно
-      # и проверки перестанут что-либо значить.
-      #
-      # JSON от release-please разбирается в шаге, а не в env через fromJSON:
-      # выражения в env вычисляются до проверки `if`, и на пустом выводе
-      # (релизить нечего или предыдущий шаг упал) весь workflow падает с
-      # «Error reading JToken from JsonReader».
-      - name: Enable auto-merge on the release PR
-        if: ${{ steps.release.outputs.pr }}
-        run: |
-          number=$(printf '%s' "$RELEASE_PR" | jq -r .number)
-          gh pr merge --auto --squash "$number"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_PR: ${{ steps.release.outputs.pr }}
-          # Job не делает checkout, поэтому рабочего каталога с .git нет и gh
-          # не может вывести репозиторий сам: без этого шаг падает с
-          # «fatal: not a git repository». Добавлять checkout ради одного
-          # вызова gh не нужно.
-          GH_REPO: ${{ github.repository }}
