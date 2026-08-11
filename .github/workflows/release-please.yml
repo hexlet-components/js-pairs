@@ -21,14 +21,26 @@ jobs:
         id: release
         with:
           release-type: node
+        env:
+          # Без этого release-please 17 падает с «self-signed certificate».
+          # Он ходит в API через undici, который берёт свой набор корневых
+          # сертификатов вместо системного.
+          NODE_OPTIONS: --use-system-ca
 
       # «Автоматический релиз при зелёных проверках»: PR вливается сам, но
       # только после обязательных статус-проверок. Требование зелёного CI даёт
       # защита ветки, а не этот шаг. Если защиту снять, PR вольётся немедленно
       # и проверки перестанут что-либо значить.
+      #
+      # JSON от release-please разбирается в шаге, а не в env через fromJSON:
+      # выражения в env вычисляются до проверки `if`, и на пустом выводе
+      # (релизить нечего или предыдущий шаг упал) весь workflow падает с
+      # «Error reading JToken from JsonReader».
       - name: Enable auto-merge on the release PR
         if: ${{ steps.release.outputs.pr }}
-        run: gh pr merge --auto --squash "$PR_NUMBER"
+        run: |
+          number=$(printf '%s' "$RELEASE_PR" | jq -r .number)
+          gh pr merge --auto --squash "$number"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_NUMBER: ${{ fromJSON(steps.release.outputs.pr).number }}
+          RELEASE_PR: ${{ steps.release.outputs.pr }}
