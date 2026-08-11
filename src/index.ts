@@ -1,6 +1,6 @@
 export type Pair<T, U> = {
-  (message: 'car'): T;
-  (message: 'cdr'): U;
+  (message: "car"): T;
+  (message: "cdr"): U;
   pair: true;
 };
 
@@ -14,9 +14,9 @@ export type Pair<T, U> = {
 export const cons = <T, U>(left: T, right: U): Pair<T, U> => {
   const pair = ((message: string) => {
     switch (message) {
-      case 'car':
+      case "car":
         return left;
-      case 'cdr':
+      case "cdr":
         return right;
       default:
         throw new Error(`Unknown message '${message}'`);
@@ -35,17 +35,12 @@ export const cons = <T, U>(left: T, right: U): Pair<T, U> => {
  * isPair(5); // false
  */
 export const isPair = (value: unknown): value is Pair<unknown, unknown> =>
-  typeof value === 'function' &&
-  (value as Partial<Pair<unknown, unknown>>).pair === true;
+  typeof value === "function" && (value as Partial<Pair<unknown, unknown>>).pair === true;
 
-export function checkPair(
-  value: unknown,
-): asserts value is Pair<unknown, unknown> {
+export function checkPair(value: unknown): asserts value is Pair<unknown, unknown> {
   if (!isPair(value)) {
     const printable =
-      typeof value === 'object' && value !== null
-        ? JSON.stringify(value, null, 2)
-        : String(value);
+      typeof value === "object" && value !== null ? JSON.stringify(value, null, 2) : String(value);
 
     throw new Error(`Argument must be pair, but it was '${printable}'`);
   }
@@ -59,7 +54,7 @@ export function checkPair(
  */
 export const car = <T>(pair: Pair<T, unknown>): T => {
   checkPair(pair);
-  return pair('car');
+  return pair("car");
 };
 
 /**
@@ -70,7 +65,7 @@ export const car = <T>(pair: Pair<T, unknown>): T => {
  */
 export const cdr = <U>(pair: Pair<unknown, U>): U => {
   checkPair(pair);
-  return pair('cdr');
+  return pair("cdr");
 };
 
 /**
