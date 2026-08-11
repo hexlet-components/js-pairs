@@ -1,15 +1,15 @@
 name: Release Please
 
-# Ведёт версию и CHANGELOG.md по conventional commits и ставит тег v*.
-# Публикацию в npm делает не этот workflow, а release.yml, который срабатывает
-# на пуш тега. То есть здесь закрывается только версионирование: ровно тот шаг,
-# который раньше делали руками и из-за которого версии в git и в npm разошлись.
+# Ведёт версию и CHANGELOG.md по conventional commits, ставит тег v* и сразу
+# публикует пакет в npm.
 #
-# Релизный PR вливается руками. Автомержа здесь намеренно нет: PR создаёт
-# GITHUB_TOKEN, а GitHub не запускает workflow от его событий (защита от
-# рекурсии). Поэтому обязательные проверки на релизном PR либо не стартуют
-# вовсе, либо встают в action_required, и автомерж ждал бы статуса, которого
-# никто не пришлёт.
+# Публикация живёт здесь, а не в отдельном workflow по тегу, потому что тег
+# ставит GITHUB_TOKEN, а GitHub не запускает workflow от его событий (защита от
+# рекурсии). Tag-workflow в этой схеме не срабатывает вообще: версия в git
+# уходит вперёд, в npm остаётся старая, и расхождение замечают через месяцы.
+#
+# Релизный PR вливается руками, автомержа нет: обязательные проверки на нём по
+# той же причине либо не стартуют, либо ждут ручного одобрения.
 on:
   push:
     branches:
@@ -18,12 +18,17 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
 
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@v5
+        id: release
         with:
           release-type: node
         env:
@@ -31,3 +36,32 @@ jobs:
           # Он ходит в API через undici, который берёт свой набор корневых
           # сертификатов вместо системного.
           NODE_OPTIONS: --use-system-ca
+
+  publish:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.released == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.release-please.outputs.tag }}
+
+      - uses: pnpm/action-setup@v6
+
+      - name: Use Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: '26.x'
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install
+        run: make install
+      - name: Run linter
+        run: make lint
+      - name: Run tests
+        run: make test
+      - name: Publish
+        run: make publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.npmjs_com }}
