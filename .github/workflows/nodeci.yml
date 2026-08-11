@@ -22,7 +22,7 @@ jobs:
       # pnpm ставится до setup-node: setup-node с cache: pnpm ищет уже
       # существующий бинарь, чтобы вычислить путь к store. В обратном порядке
       # шаг падает с «Unable to locate executable file: pnpm».
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
       - name: Use Node.js ${{ matrix.node-version}}
         uses: actions/setup-node@v7
