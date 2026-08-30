@@ -2,21 +2,21 @@
 
 ### Table of Contents
 
-*   [cons][1]
-    *   [Parameters][2]
-    *   [Examples][3]
-*   [isPair][4]
-    *   [Parameters][5]
-    *   [Examples][6]
-*   [car][7]
-    *   [Parameters][8]
-    *   [Examples][9]
-*   [cdr][10]
-    *   [Parameters][11]
-    *   [Examples][12]
-*   [toString][13]
-    *   [Parameters][14]
-    *   [Examples][15]
+- [cons][1]
+    - [Parameters][2]
+    - [Examples][3]
+- [isPair][4]
+    - [Parameters][5]
+    - [Examples][6]
+- [car][7]
+    - [Parameters][8]
+    - [Examples][9]
+- [cdr][10]
+    - [Parameters][11]
+    - [Examples][12]
+- [toString][13]
+    - [Parameters][14]
+    - [Examples][15]
 
 ## cons
 
@@ -24,8 +24,8 @@ Build pair
 
 ### Parameters
 
-*   `left` **T**&#x20;
-*   `right` **U**&#x20;
+- `left` **T**&#x20;
+- `right` **U**&#x20;
 
 ### Examples
 
@@ -45,7 +45,7 @@ Check if something is pair
 
 ### Parameters
 
-*   `value` **any**&#x20;
+- `value` **any**&#x20;
 
 ### Examples
 
@@ -63,7 +63,7 @@ Get car (first element) from pair
 
 ### Parameters
 
-*   `pair` **Pair\<T, any>**&#x20;
+- `pair` **Pair\<T, any>**&#x20;
 
 ### Examples
 
@@ -80,7 +80,7 @@ Get cdr (second element) from pair
 
 ### Parameters
 
-*   `pair` **Pair\<any, U>**&#x20;
+- `pair` **Pair\<any, U>**&#x20;
 
 ### Examples
 
@@ -97,7 +97,7 @@ Convert pair to string (recursively)
 
 ### Parameters
 
-*   `pair` **Pair\<any, any>**&#x20;
+- `pair` **Pair\<any, any>**&#x20;
 
 ### Examples
 
