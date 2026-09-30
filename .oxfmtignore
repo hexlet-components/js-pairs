@@ -1,4 +1,4 @@
-# Что oxfmt не форматирует. Список повторяет ignorePatterns из .oxlintrc.json:
+# Что oxfmt не форматирует. Список повторяет ignorePatterns из oxlint.config.ts:
 # линт и формат должны видеть одни и те же файлы.
 node_modules/
 # oxfmt форматирует не только js/ts. Без этих строк он переписывает package.json
