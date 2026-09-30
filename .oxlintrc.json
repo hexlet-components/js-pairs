@@ -8,6 +8,7 @@
     "promise",
     "node",
     "jsdoc",
+    "jest",
     "vitest",
     "react",
     "react-perf",
@@ -17,7 +18,23 @@
   "categories": {
     "correctness": "error"
   },
-  "rules": {},
+  "rules": {
+    "vitest/require-to-throw-message": "off",
+    "vitest/no-standalone-expect": "off",
+    "jest/no-standalone-expect": "off",
+    "jest/valid-expect": [
+      "error",
+      {
+        "maxArgs": 2
+      }
+    ],
+    "vitest/valid-expect": [
+      "error",
+      {
+        "maxArgs": 2
+      }
+    ]
+  },
   "env": {
     "builtin": true,
     "browser": true,
