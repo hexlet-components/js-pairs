@@ -2,11 +2,10 @@
 // hexlet-exercise-kit, регламент в его docs/js-code-style.md, а в репозитории
 // компонентов файл копируется как есть. oxlint находит его сам, без --config.
 //
-// Импорт `oxlint` резолвится от этого файла, поэтому пакет oxlint стоит в
-// devDependencies репозитория.
-import { defineConfig } from "oxlint";
-
-export default defineConfig({
+// Объект без `defineConfig`: его импорт резолвится от этого файла и потребовал
+// бы пакет oxlint в node_modules, а бинарь в ките ставит mise. Опечатку в
+// плагине, правиле или значении oxlint ловит сам при загрузке (код выхода 1).
+export default {
   // По умолчанию oxlint поднимает только typescript, unicorn и oxc.
   plugins: [
     "typescript",
@@ -49,4 +48,4 @@ export default defineConfig({
     "**/.venv/**",
     "**/__snapshots__/**",
   ],
-});
+};

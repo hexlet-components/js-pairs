@@ -30,11 +30,11 @@
     "documentation": "documentation build src/index.ts -f md",
     "test": "vitest run --pool=threads",
     "lint": "oxlint .",
-    "lint:fix": "oxfmt --ignore-path=.oxfmtignore . && oxlint --fix .",
+    "lint:fix": "oxfmt . && oxlint --fix .",
     "prepare": "pnpm run build",
     "prepublishOnly": "pnpm run build",
-    "format": "oxfmt --ignore-path=.oxfmtignore .",
-    "format:check": "oxfmt --ignore-path=.oxfmtignore --check ."
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check ."
   },
   "repository": {
     "type": "git",
