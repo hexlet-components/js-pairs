@@ -1,0 +1,7 @@
+# Профиль по умолчанию. Числа ниже нужны только --fix: без них jactionlint
+# не выбирает срок и таймаут сам.
+rules:
+  dependabot-cooldown:
+    default-days: 7
+  missing-timeout:
+    default-minutes: 15

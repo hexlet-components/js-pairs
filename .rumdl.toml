@@ -1,0 +1,4 @@
+# Абзацы не переносятся по ширине (MD013), CHANGELOG ведёт release-please.
+[global]
+disable = ["MD013", "MD033", "MD041"]
+exclude = ["CHANGELOG.md", "docs/README.md", "node_modules"]

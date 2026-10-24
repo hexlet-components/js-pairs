@@ -1,0 +1,5 @@
+# Исправленной версии нет. Пакет приходит транзитивно через documentation
+# (генератор docs/README.md) и в опубликованный пакет не попадает.
+[[IgnoredVulns]]
+id = "GHSA-g3ch-rx76-35fx"
+reason = "vue-template-compiler без исправления, только devDependency генератора документации"

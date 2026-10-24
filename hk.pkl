@@ -1,0 +1,58 @@
+// Хуки ставит `hk install`: на git 2.54+ это записи hook.* в .git/config,
+// общий core.hooksPath дерева кита они не трогают.
+amends "package://github.com/jdx/hk/releases/download/v2.8.1/hk@2.8.1#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v2.8.1/hk@2.8.1#/Builtins.pkl"
+
+local sources = List("**/*.ts", "**/*.js")
+
+// Быстрые проверки идут на каждый коммит. Сеть нужна только lychee, поэтому
+// ссылки проверяются в check и перед пушем.
+local fast = new Mapping<String, Step> {
+  ["format"] {
+    glob = sources
+    check = "pnpm exec oxfmt --check --no-error-on-unmatched-pattern {{files}}"
+    fix = "pnpm exec oxfmt --no-error-on-unmatched-pattern {{files}}"
+  }
+  ["lint"] {
+    glob = sources
+    check = "pnpm exec oxlint {{files}}"
+  }
+  ["rumdl"] = Builtins.rumdl
+  ["typos"] = Builtins.typos
+  ["jactionlint"] = Builtins.jactionlint
+}
+
+local all = (fast) {
+  ["lychee"] {
+    glob = List("**/*.md")
+    check = "lychee --config lychee.toml --no-progress {{files}}"
+  }
+}
+
+hooks {
+  // stash выключен: на время хука он откатывает непроиндексированный
+  // package.json, pnpm exec видит расхождение с локом и доустанавливает
+  // зависимости прямо посреди коммита.
+  ["pre-commit"] {
+    fix = true
+    stash = "none"
+    steps = fast
+  }
+  // История читается release-please, поэтому заголовок коммита проверяется
+  // до записи. В CI тот же commitlint гоняется по диапазону пуша.
+  ["commit-msg"] {
+    steps {
+      ["commitlint"] {
+        check = "commitlint --edit {{commit_msg_file}}"
+      }
+    }
+  }
+  ["pre-push"] {
+    steps = all
+  }
+  ["check"] { steps = all }
+  ["fix"] {
+    fix = true
+    steps = all
+  }
+}
